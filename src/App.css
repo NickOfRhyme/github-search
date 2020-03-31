@@ -18,6 +18,11 @@
   color: white;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -36,7 +41,6 @@
   margin: 5px;
   padding: 20px 10px;
   text-align: center;
-  width: 270px;
 }
 
 .card .avatar {

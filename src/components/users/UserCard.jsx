@@ -10,13 +10,17 @@ class UserCard extends Component {
   };
 
   render() {
-    const { login, avatar_url, html_url } = this.state;
+    const { user } = this.props;
 
     return (
       <div className="card">
-        <img src={avatar_url} alt={`${login}`} className="avatar"></img>
-        <p className="username">{login}</p>
-        <a className="btn" href={html_url}>
+        <img
+          src={user.avatar_url}
+          alt={`${user.login}`}
+          className="avatar"
+        ></img>
+        <p className="username">{user.login}</p>
+        <a className="btn" href={user.html_url}>
           more...
         </a>
       </div>

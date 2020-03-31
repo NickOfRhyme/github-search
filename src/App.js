@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
-import UserCard from "./components/users/UserCard";
+import UserList from "./components/users/UserList";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Navbar />
-        <UserCard />
+        <UserList />
       </div>
     );
   }
