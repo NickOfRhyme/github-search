@@ -1,31 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class UserCard extends Component {
-  state = {
-    id: 1,
-    login: "mojombo",
-    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
-    html_url: "https://github.com/mojombo"
-  };
+const UserCard = ({ user: { avatar_url, login, html_url } }) => {
+  return (
+    <div className="card">
+      <img src={avatar_url} alt={`${login}`} className="avatar"></img>
+      <p className="username">{login}</p>
+      <a className="btn" href={html_url}>
+        more...
+      </a>
+    </div>
+  );
+};
 
-  render() {
-    const { user } = this.props;
-
-    return (
-      <div className="card">
-        <img
-          src={user.avatar_url}
-          alt={`${user.login}`}
-          className="avatar"
-        ></img>
-        <p className="username">{user.login}</p>
-        <a className="btn" href={user.html_url}>
-          more...
-        </a>
-      </div>
-    );
-  }
-}
+UserCard.propTypes = {
+  avatar_url: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
+  html_url: PropTypes.string.isRequired
+};
 
 export default UserCard;
