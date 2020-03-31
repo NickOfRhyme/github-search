@@ -18,6 +18,27 @@
   color: white;
 }
 
+.spinner {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 10px dotted gray;
+  margin: 3em auto;
+  animation-name: spin;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .grid-container {
   display: grid;
   margin: 2em;
