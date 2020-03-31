@@ -6,7 +6,8 @@ import UserList from "./components/users/UserList";
 
 class App extends Component {
   state = {
-    isLoading: true
+    isLoading: true,
+    users: []
   };
 
   async componentDidMount() {
