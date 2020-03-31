@@ -14,9 +14,7 @@ const UserCard = ({ user: { avatar_url, login, html_url } }) => {
 };
 
 UserCard.propTypes = {
-  avatar_url: PropTypes.string.isRequired,
-  login: PropTypes.string.isRequired,
-  html_url: PropTypes.string.isRequired
+  user: PropTypes.object.isRequired
 };
 
 export default UserCard;

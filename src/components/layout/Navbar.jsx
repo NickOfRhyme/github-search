@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 const Navbar = ({ title, icon }) => {
   return (
     <nav className="navbar">
-      <i className={this.props.icon}></i>
-      <h2>{this.props.title}</h2>
+      <i className={icon}></i>
+      <h2>{title}</h2>
     </nav>
   );
 };
