@@ -1,3 +1,23 @@
+.btn {
+  color: white;
+  background-color: gray;
+  border: none;
+  padding: 0.25em 0.75em;
+  border-radius: 0.75em;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: lightgray;
+  color: black;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: darkgray;
+  color: white;
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -7,5 +27,24 @@
 }
 
 .navbar * {
-  margin: 0;
+  margin: 3px;
+  font-size: 1.5em;
+}
+
+.card {
+  border: 1px solid lightgray;
+  margin: 5px;
+  padding: 20px 10px;
+  text-align: center;
+  width: 270px;
+}
+
+.card .avatar {
+  border-radius: 35px;
+  width: 70px;
+}
+
+.card .username {
+  margin: 0.5em;
+  font-weight: bold;
 }

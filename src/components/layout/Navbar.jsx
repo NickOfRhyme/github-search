@@ -15,8 +15,8 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <h2>{this.props.title}</h2>
         <i className={this.props.icon}></i>
+        <h2>{this.props.title}</h2>
       </nav>
     );
   }
