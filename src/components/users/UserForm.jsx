@@ -1,15 +1,21 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class UserForm extends Component {
   state = {
     text: ""
   };
 
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired
+  };
+
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    this.props.searchUsers(this.state.text);
+    this.setState({ text: "" });
   };
 
   render() {
