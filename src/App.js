@@ -12,10 +12,6 @@ class App extends Component {
     users: []
   };
 
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired
-  };
-
   searchUsers = async text => {
     this.setState({ isLoading: true });
     const response = await axios.get(
@@ -24,13 +20,19 @@ class App extends Component {
     this.setState({ users: response.data.items, isLoading: false });
   };
 
+  clearUsers = () => this.setState({ users: [], isLoading: false });
+
   render() {
     const { users, isLoading } = this.state;
-    const { searchUsers } = this;
+    const { searchUsers, clearUsers } = this;
     return (
       <div className="App">
         <Navbar />
-        <UserForm searchUsers={searchUsers} />
+        <UserForm
+          searchUsers={searchUsers}
+          clearUsers={clearUsers}
+          usersShowing={users.length > 0}
+        />
         <UserList users={users} isLoading={isLoading} />
       </div>
     );

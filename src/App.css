@@ -18,6 +18,21 @@
   color: white;
 }
 
+.btn-light {
+  background-color: lightgray;
+  color: black;
+  border: none;
+  padding: 0.25em 0.75em;
+  border-radius: 0.75em;
+  text-decoration: none;
+}
+
+.btn-light:hover {
+  color: white;
+  background-color: gray;
+  cursor: pointer;
+}
+
 .spinner {
   width: 150px;
   height: 150px;

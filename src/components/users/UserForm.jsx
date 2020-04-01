@@ -7,7 +7,9 @@ class UserForm extends Component {
   };
 
   static propTypes = {
-    searchUsers: PropTypes.func.isRequired
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    usersShowing: PropTypes.bool.isRequired
   };
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -19,18 +21,26 @@ class UserForm extends Component {
   };
 
   render() {
+    const { usersShowing, clearUsers } = this.props;
+    const { text } = this.state;
+    const { handleSubmit, handleChange } = this;
     return (
-      <form onSubmit={this.handleSubmit} className="search-form">
+      <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
           name="text"
           className="search-textbox"
-          value={this.state.text}
-          onChange={this.handleChange}
+          value={text}
+          onChange={handleChange}
         />
         <button className="btn" type="submit">
           Search
         </button>
+        {usersShowing && (
+          <button className="btn btn-light" type="button" onClick={clearUsers}>
+            Clear
+          </button>
+        )}
       </form>
     );
   }
