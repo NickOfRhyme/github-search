@@ -9,6 +9,7 @@ class UserForm extends Component {
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
     clearUsers: PropTypes.func.isRequired,
+    displayAlert: PropTypes.func.isRequired,
     usersShowing: PropTypes.bool.isRequired
   };
 
@@ -16,8 +17,14 @@ class UserForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: "" });
+    const { text } = this.state;
+    const { searchUsers, displayAlert } = this.props;
+    if (text) {
+      this.props.searchUsers(text);
+      this.setState({ text: "" });
+    } else {
+      displayAlert("Please enter a search term", "warning");
+    }
   };
 
   render() {

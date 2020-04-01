@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import UserList from "./components/users/UserList";
 import UserForm from "./components/users/UserForm";
+import Alert from "./components/layout/Alert";
 
 class App extends Component {
   state = {
     isLoading: false,
+    alert: null,
     users: []
   };
 
@@ -22,17 +23,24 @@ class App extends Component {
 
   clearUsers = () => this.setState({ users: [], isLoading: false });
 
+  displayAlert = (msg, type) => {
+    this.setState({ alert: { msg, type } });
+    setTimeout(() => this.setState({ alert: null }), 5000);
+  };
+
   render() {
-    const { users, isLoading } = this.state;
-    const { searchUsers, clearUsers } = this;
+    const { users, isLoading, alert } = this.state;
+    const { searchUsers, clearUsers, displayAlert } = this;
     return (
       <div className="App">
         <Navbar />
         <UserForm
           searchUsers={searchUsers}
           clearUsers={clearUsers}
+          displayAlert={displayAlert}
           usersShowing={users.length > 0}
         />
+        {alert && <Alert alert={alert} />}
         <UserList users={users} isLoading={isLoading} />
       </div>
     );
