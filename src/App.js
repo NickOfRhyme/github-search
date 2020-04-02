@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import UserList from "./components/users/UserList";
 import UserForm from "./components/users/UserForm";
 import Alert from "./components/layout/Alert";
+import AboutPage from "./components/about/AboutPage";
 
 class App extends Component {
   state = {
@@ -32,17 +34,30 @@ class App extends Component {
     const { users, isLoading, alert } = this.state;
     const { searchUsers, clearUsers, displayAlert } = this;
     return (
-      <div className="App">
-        <Navbar />
-        <UserForm
-          searchUsers={searchUsers}
-          clearUsers={clearUsers}
-          displayAlert={displayAlert}
-          usersShowing={users.length > 0}
-        />
-        {alert && <Alert alert={alert} />}
-        <UserList users={users} isLoading={isLoading} />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <>
+                  <UserForm
+                    searchUsers={searchUsers}
+                    clearUsers={clearUsers}
+                    displayAlert={displayAlert}
+                    usersShowing={users.length > 0}
+                  />
+                  {alert && <Alert alert={alert} />}
+                  <UserList users={users} isLoading={isLoading} />
+                </>
+              )}
+            />
+            <Route exact path="/about" component={AboutPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }

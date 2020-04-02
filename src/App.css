@@ -70,16 +70,35 @@
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 75% 25%;
   width: 100%;
   background-color: gray;
   color: whitesmoke;
 }
 
 .navbar * {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.navbar a:hover {
+  color: lightgray;
+}
+
+.navbar .left-side * {
   margin: 3px;
   font-size: 1.5em;
+}
+
+.navbar .right-side {
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .card {
