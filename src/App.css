@@ -1,3 +1,13 @@
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: darkslategray;
+}
+
+a:hover {
+  color: darkgray;
+}
+
 .btn {
   color: white;
   background-color: gray;
@@ -83,7 +93,6 @@
 }
 
 .navbar a {
-  text-decoration: none;
   color: whitesmoke;
 }
 
@@ -129,4 +138,27 @@
   background-color: white;
   border: 1px solid gray;
   border-radius: 0.5em;
+}
+
+.user-page {
+  border: 1px solid lightgray;
+  padding: 20px 10px;
+  margin: 2em;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  width: fit-content;
+}
+
+.user-page .user-overview {
+  text-align: center;
+}
+
+.user-page .avatar {
+  border-radius: 70px;
+  width: 140px;
+}
+
+.user-page .username {
+  margin: 0.5em;
+  font-weight: bold;
 }

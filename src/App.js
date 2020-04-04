@@ -7,20 +7,30 @@ import UserList from "./components/users/UserList";
 import UserForm from "./components/users/UserForm";
 import Alert from "./components/layout/Alert";
 import AboutPage from "./components/about/AboutPage";
+import UserPage from "./components/users/UserPage";
 
 class App extends Component {
   state = {
     isLoading: false,
     alert: null,
-    users: []
+    users: [],
+    user: {},
   };
 
-  searchUsers = async text => {
+  searchUsers = async (text) => {
     this.setState({ isLoading: true });
     const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET})`
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     this.setState({ users: response.data.items, isLoading: false });
+  };
+
+  getUser = async (login) => {
+    this.setState({ isLoading: true });
+    const response = await axios.get(
+      `https://api.github.com/users/${login}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ isLoading: false, user: response.data });
   };
 
   clearUsers = () => this.setState({ users: [], isLoading: false });
@@ -41,7 +51,7 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => (
+              render={(props) => (
                 <>
                   <UserForm
                     searchUsers={searchUsers}
@@ -52,6 +62,18 @@ class App extends Component {
                   {alert && <Alert alert={alert} />}
                   <UserList users={users} isLoading={isLoading} />
                 </>
+              )}
+            />
+            <Route
+              exact
+              path="/users/:login"
+              render={(props) => (
+                <UserPage
+                  {...props}
+                  getUser={this.getUser}
+                  user={this.state.user}
+                  isLoading={isLoading}
+                />
               )}
             />
             <Route exact path="/about" component={AboutPage} />
