@@ -1,56 +1,47 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-class UserForm extends Component {
-  state = {
-    text: ""
-  };
+const UserForm = ({ usersShowing, clearUsers, searchUsers, displayAlert }) => {
+  const [text, setText] = useState("");
 
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    displayAlert: PropTypes.func.isRequired,
-    usersShowing: PropTypes.bool.isRequired
-  };
+  const handleChange = (e) => setText(e.target.value);
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { text } = this.state;
-    const { searchUsers, displayAlert } = this.props;
     if (text) {
-      this.props.searchUsers(text);
-      this.setState({ text: "" });
+      searchUsers(text);
+      setText("");
     } else {
       displayAlert("Please enter a search term", "warning");
     }
   };
 
-  render() {
-    const { usersShowing, clearUsers } = this.props;
-    const { text } = this.state;
-    const { handleSubmit, handleChange } = this;
-    return (
-      <form onSubmit={handleSubmit} className="search-form">
-        <input
-          type="text"
-          name="text"
-          className="search-textbox"
-          value={text}
-          onChange={handleChange}
-        />
-        <button className="btn" type="submit">
-          Search
+  return (
+    <form onSubmit={handleSubmit} className="search-form">
+      <input
+        type="text"
+        name="text"
+        className="search-textbox"
+        value={text}
+        onChange={handleChange}
+      />
+      <button className="btn" type="submit">
+        Search
+      </button>
+      {usersShowing && (
+        <button className="btn btn-light" type="button" onClick={clearUsers}>
+          Clear
         </button>
-        {usersShowing && (
-          <button className="btn btn-light" type="button" onClick={clearUsers}>
-            Clear
-          </button>
-        )}
-      </form>
-    );
-  }
-}
+      )}
+    </form>
+  );
+};
+
+UserForm.propTypes = {
+  searchUsers: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+  displayAlert: PropTypes.func.isRequired,
+  usersShowing: PropTypes.bool.isRequired
+};
 
 export default UserForm;
