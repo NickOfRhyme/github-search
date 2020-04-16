@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import GithubState from "./context/github/GithubState";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import UserList from "./components/users/UserList";
@@ -44,42 +45,44 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <>
-                <UserForm
-                  searchUsers={searchUsers}
-                  clearUsers={clearUsers}
-                  displayAlert={displayAlert}
-                  usersShowing={users.length > 0}
+    <GithubState>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <>
+                  <UserForm
+                    searchUsers={searchUsers}
+                    clearUsers={clearUsers}
+                    displayAlert={displayAlert}
+                    usersShowing={users.length > 0}
+                  />
+                  {alert && <Alert alert={alert} />}
+                  <UserList users={users} isLoading={isLoading} />
+                </>
+              )}
+            />
+            <Route
+              exact
+              path="/users/:login"
+              render={(props) => (
+                <UserPage
+                  {...props}
+                  getUser={getUser}
+                  user={user}
+                  isLoading={isLoading}
                 />
-                {alert && <Alert alert={alert} />}
-                <UserList users={users} isLoading={isLoading} />
-              </>
-            )}
-          />
-          <Route
-            exact
-            path="/users/:login"
-            render={(props) => (
-              <UserPage
-                {...props}
-                getUser={getUser}
-                user={user}
-                isLoading={isLoading}
-              />
-            )}
-          />
-          <Route exact path="/about" component={AboutPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+              )}
+            />
+            <Route exact path="/about" component={AboutPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </GithubState>
   );
 };
 
