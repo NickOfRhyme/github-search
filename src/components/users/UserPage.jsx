@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import GithubContext from "../../context/github/githubContext";
 import LoadingSpinner from "../layout/LoadingSpinner";
 
-const UserPage = ({ isLoading, user, match, getUser }) => {
+const UserPage = ({ match }) => {
+  const { getUser, user, isLoading } = useContext(GithubContext);
+
   useEffect(() => {
     getUser(match.params.login);
   }, []);

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import GithubContext from "../../context/github/githubContext";
 import PropTypes from "prop-types";
 
-const UserForm = ({ usersShowing, clearUsers, searchUsers, displayAlert }) => {
+const UserForm = ({ displayAlert }) => {
   const [text, setText] = useState("");
+  const { searchUsers, clearUsers, users } = useContext(GithubContext);
+  const usersShowing = users.length > 0;
 
   const handleChange = (e) => setText(e.target.value);
 
@@ -38,10 +41,7 @@ const UserForm = ({ usersShowing, clearUsers, searchUsers, displayAlert }) => {
 };
 
 UserForm.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
-  clearUsers: PropTypes.func.isRequired,
-  displayAlert: PropTypes.func.isRequired,
-  usersShowing: PropTypes.bool.isRequired
+  displayAlert: PropTypes.func.isRequired
 };
 
 export default UserForm;

@@ -1,23 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import GithubContext from "../../context/github/githubContext";
 import UserCard from "./UserCard";
 import LoadingSpinner from "../layout/LoadingSpinner";
 
-const UserList = ({ users, isLoading }) => {
+const UserList = () => {
+  const { users, isLoading } = useContext(GithubContext);
   return isLoading ? (
     <LoadingSpinner />
   ) : (
     <ul className="grid-container">
-      {users.map(user => (
+      {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
     </ul>
   );
-};
-
-UserList.propTypes = {
-  users: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired
 };
 
 export default UserList;
