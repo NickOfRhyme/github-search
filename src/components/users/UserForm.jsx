@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githubContext";
+import AlertContext from "../../context/alert/alertContext";
 import PropTypes from "prop-types";
 
-const UserForm = ({ displayAlert }) => {
-  const [text, setText] = useState("");
+const UserForm = () => {
+  const { displayAlert } = useContext(AlertContext);
   const { searchUsers, clearUsers, users } = useContext(GithubContext);
   const usersShowing = users.length > 0;
+  const [text, setText] = useState("");
 
   const handleChange = (e) => setText(e.target.value);
 
