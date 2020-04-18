@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githubContext";
 import AlertContext from "../../context/alert/alertContext";
-import PropTypes from "prop-types";
 
 const UserForm = () => {
   const { displayAlert } = useContext(AlertContext);
@@ -40,10 +39,6 @@ const UserForm = () => {
       )}
     </form>
   );
-};
-
-UserForm.propTypes = {
-  displayAlert: PropTypes.func.isRequired
 };
 
 export default UserForm;

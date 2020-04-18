@@ -79,6 +79,18 @@ a:hover {
   gap: 1em;
 }
 
+@media only screen and (max-width: 630px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 .navbar {
   display: grid;
   grid-template-columns: 75% 25%;
