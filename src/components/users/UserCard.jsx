@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import PropTypes from "prop-types";
 
 const UserCard = ({ user: { avatar_url, login, html_url } }) => {
